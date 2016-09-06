@@ -25,7 +25,8 @@ bash /vagrant/mysql_secure_installation_mod
 sudo apt-get install -y php5 php5-mysql php5-mycrpt
 
 # Enable mcrypt in Apache
-sudo php5enmod mcrypt 
+php5enmod mcrypt 
+service apache2 restart
 
 # Change the order that Apache uses to execute files so that index.php is used over index.html
 echo "<IfModule mod_dir.c>
@@ -72,4 +73,9 @@ service apache2 restart
 rm /var/www/html/index.php
 ln -s /vagrant/CodeIgniter-3.1.0/index.php /var/www/html/index.php
 ln -s /vagrant/simple_api.php /var/www/html/simple_api.php
+
+# CSS, JS, image soflink
+ln -s /vagrant/CodeIgniter-3.1.0/application/css /var/www/html/css
+ln -s /vagrant/CodeIgniter-3.1.0/application/js /var/www/html/js
+ln -s /vagrant/CodeIgniter-3.1.0/application/images /var/www/html/images
 
